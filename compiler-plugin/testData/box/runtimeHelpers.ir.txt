@@ -1,0 +1,308 @@
+FILE fqName:<root> fileName:/runtimeHelpers.kt
+  annotations:
+    OptIn(markerClass = [KomprehensionInternalApi::class] type=kotlin.Array<out kotlin.reflect.KClass<out kotlin.Annotation>> varargElementType=kotlin.reflect.KClass<out kotlin.Annotation>)
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun fromIterable <T> (source: kotlin.collections.Iterable<T of com.jsoizo.komprehension.internal.fromIterable>?): kotlin.collections.List<T of com.jsoizo.komprehension.internal.fromIterable> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+                ARG source: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+                  TYPE_ARG T: kotlin.Int
+                  ARG elements: VARARG type=kotlin.Array<out kotlin.Int> varargElementType=kotlin.Int
+                    CONST Int type=kotlin.Int value=1
+                    CONST Int type=kotlin.Int value=2
+                    CONST Int type=kotlin.Int value=3
+              ARG arg1: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+                ARG elements: VARARG type=kotlin.Array<out kotlin.Int> varargElementType=kotlin.Int
+                  CONST Int type=kotlin.Int value=1
+                  CONST Int type=kotlin.Int value=2
+                  CONST Int type=kotlin.Int value=3
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: fromIterable"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun fromSequence <T> (source: kotlin.sequences.Sequence<T of com.jsoizo.komprehension.internal.fromSequence>?): kotlin.collections.List<T of com.jsoizo.komprehension.internal.fromSequence> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: kotlin.String
+                ARG source: CALL 'public final fun sequenceOf <T> (vararg elements: T of kotlin.sequences.sequenceOf): kotlin.sequences.Sequence<T of kotlin.sequences.sequenceOf> declared in kotlin.sequences' type=kotlin.sequences.Sequence<kotlin.String> origin=null
+                  TYPE_ARG T: kotlin.String
+                  ARG elements: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+                    CONST String type=kotlin.String value="a"
+                    CONST String type=kotlin.String value="b"
+              ARG arg1: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: kotlin.String
+                ARG elements: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+                  CONST String type=kotlin.String value="a"
+                  CONST String type=kotlin.String value="b"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: fromSequence"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun fromArray <T> (source: kotlin.Array<out T of com.jsoizo.komprehension.internal.fromArray>?): kotlin.collections.List<T of com.jsoizo.komprehension.internal.fromArray> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+                ARG source: CALL 'public final fun arrayOf <T> (vararg elements: T of kotlin.arrayOf): kotlin.Array<T of kotlin.arrayOf> declared in kotlin' type=kotlin.Array<kotlin.Int> origin=null
+                  TYPE_ARG T: kotlin.Int
+                  ARG elements: VARARG type=kotlin.Array<out kotlin.Int> varargElementType=kotlin.Int
+                    CONST Int type=kotlin.Int value=1
+                    CONST Int type=kotlin.Int value=2
+                    CONST Int type=kotlin.Int value=3
+              ARG arg1: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+                ARG elements: VARARG type=kotlin.Array<out kotlin.Int> varargElementType=kotlin.Int
+                  CONST Int type=kotlin.Int value=1
+                  CONST Int type=kotlin.Int value=2
+                  CONST Int type=kotlin.Int value=3
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: fromArray"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun fromMap <K, V> (source: kotlin.collections.Map<K of com.jsoizo.komprehension.internal.fromMap, V of com.jsoizo.komprehension.internal.fromMap>?): kotlin.collections.List<kotlin.Pair<K of com.jsoizo.komprehension.internal.fromMap, V of com.jsoizo.komprehension.internal.fromMap>> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Pair<kotlin.String, kotlin.Int>> origin=null
+                TYPE_ARG K: kotlin.String
+                TYPE_ARG V: kotlin.Int
+                ARG source: CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Int> origin=null
+                  TYPE_ARG K: kotlin.String
+                  TYPE_ARG V: kotlin.Int
+                  ARG pairs: VARARG type=kotlin.Array<out kotlin.Pair<kotlin.String, kotlin.Int>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Int>
+                    CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                      TYPE_ARG A: kotlin.String
+                      TYPE_ARG B: kotlin.Int
+                      ARG <this>: CONST String type=kotlin.String value="a"
+                      ARG that: CONST Int type=kotlin.Int value=1
+                    CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                      TYPE_ARG A: kotlin.String
+                      TYPE_ARG B: kotlin.Int
+                      ARG <this>: CONST String type=kotlin.String value="b"
+                      ARG that: CONST Int type=kotlin.Int value=2
+              ARG arg1: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Pair<kotlin.String, kotlin.Int>> origin=null
+                TYPE_ARG T: kotlin.Pair<kotlin.String, kotlin.Int>
+                ARG elements: VARARG type=kotlin.Array<out kotlin.Pair<kotlin.String, kotlin.Int>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Int>
+                  CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                    TYPE_ARG A: kotlin.String
+                    TYPE_ARG B: kotlin.Int
+                    ARG <this>: CONST String type=kotlin.String value="a"
+                    ARG that: CONST Int type=kotlin.Int value=1
+                  CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                    TYPE_ARG A: kotlin.String
+                    TYPE_ARG B: kotlin.Int
+                    ARG <this>: CONST String type=kotlin.String value="b"
+                    ARG that: CONST Int type=kotlin.Int value=2
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: fromMap"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun fromNullable <T> (source: T of com.jsoizo.komprehension.internal.fromNullable?): kotlin.collections.List<T of com.jsoizo.komprehension.internal.fromNullable> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+                ARG source: CONST Int type=kotlin.Int value=7
+              ARG arg1: CALL 'public final fun listOf <T> (element: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+                ARG element: CONST Int type=kotlin.Int value=7
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: fromNullable"
+      VAR name:nullIterable type:kotlin.collections.List<kotlin.Int>? [val]
+        CONST Null type=kotlin.Nothing? value=null
+      VAR name:nullSequence type:kotlin.sequences.Sequence<kotlin.Int>? [val]
+        CONST Null type=kotlin.Nothing? value=null
+      VAR name:nullArray type:kotlin.Array<kotlin.Int>? [val]
+        CONST Null type=kotlin.Nothing? value=null
+      VAR name:nullMap type:kotlin.collections.Map<kotlin.String, kotlin.Int>? [val]
+        CONST Null type=kotlin.Nothing? value=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun fromIterable <T> (source: kotlin.collections.Iterable<T of com.jsoizo.komprehension.internal.fromIterable>?): kotlin.collections.List<T of com.jsoizo.komprehension.internal.fromIterable> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+                ARG source: GET_VAR 'val nullIterable: kotlin.collections.List<kotlin.Int>? declared in <root>.box' type=kotlin.collections.List<kotlin.Int>? origin=null
+              ARG arg1: CALL 'public final fun emptyList <T> (): kotlin.collections.List<T of kotlin.collections.emptyList> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: fromIterable(null)"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun fromSequence <T> (source: kotlin.sequences.Sequence<T of com.jsoizo.komprehension.internal.fromSequence>?): kotlin.collections.List<T of com.jsoizo.komprehension.internal.fromSequence> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+                ARG source: GET_VAR 'val nullSequence: kotlin.sequences.Sequence<kotlin.Int>? declared in <root>.box' type=kotlin.sequences.Sequence<kotlin.Int>? origin=null
+              ARG arg1: CALL 'public final fun emptyList <T> (): kotlin.collections.List<T of kotlin.collections.emptyList> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: fromSequence(null)"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun fromArray <T> (source: kotlin.Array<out T of com.jsoizo.komprehension.internal.fromArray>?): kotlin.collections.List<T of com.jsoizo.komprehension.internal.fromArray> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+                ARG source: GET_VAR 'val nullArray: kotlin.Array<kotlin.Int>? declared in <root>.box' type=kotlin.Array<kotlin.Int>? origin=null
+              ARG arg1: CALL 'public final fun emptyList <T> (): kotlin.collections.List<T of kotlin.collections.emptyList> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: fromArray(null)"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun fromMap <K, V> (source: kotlin.collections.Map<K of com.jsoizo.komprehension.internal.fromMap, V of com.jsoizo.komprehension.internal.fromMap>?): kotlin.collections.List<kotlin.Pair<K of com.jsoizo.komprehension.internal.fromMap, V of com.jsoizo.komprehension.internal.fromMap>> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Pair<kotlin.String, kotlin.Int>> origin=null
+                TYPE_ARG K: kotlin.String
+                TYPE_ARG V: kotlin.Int
+                ARG source: GET_VAR 'val nullMap: kotlin.collections.Map<kotlin.String, kotlin.Int>? declared in <root>.box' type=kotlin.collections.Map<kotlin.String, kotlin.Int>? origin=null
+              ARG arg1: CALL 'public final fun emptyList <T> (): kotlin.collections.List<T of kotlin.collections.emptyList> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Pair<kotlin.String, kotlin.Int>> origin=null
+                TYPE_ARG T: kotlin.Pair<kotlin.String, kotlin.Int>
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: fromMap(null)"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun fromNullable <T> (source: T of com.jsoizo.komprehension.internal.fromNullable?): kotlin.collections.List<T of com.jsoizo.komprehension.internal.fromNullable> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+                ARG source: CONST Null type=kotlin.Nothing? value=null
+              ARG arg1: CALL 'public final fun emptyList <T> (): kotlin.collections.List<T of kotlin.collections.emptyList> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: fromNullable(null)"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun pure <R> (value: R of com.jsoizo.komprehension.internal.pure): kotlin.collections.List<R of com.jsoizo.komprehension.internal.pure> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG R: kotlin.Int
+                ARG value: CONST Int type=kotlin.Int value=1
+              ARG arg1: CALL 'public final fun listOf <T> (element: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+                ARG element: CONST Int type=kotlin.Int value=1
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: pure"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun empty <R> (): kotlin.collections.List<R of com.jsoizo.komprehension.internal.empty> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG R: kotlin.Int
+              ARG arg1: CALL 'public final fun emptyList <T> (): kotlin.collections.List<T of kotlin.collections.emptyList> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: empty"
+      VAR name:concatenated type:kotlin.collections.List<kotlin.Int> [val]
+        CALL 'public final fun flatMap <T, R> (source: kotlin.collections.List<T of com.jsoizo.komprehension.internal.flatMap>, transform: kotlin.Function1<T of com.jsoizo.komprehension.internal.flatMap, kotlin.collections.List<R of com.jsoizo.komprehension.internal.flatMap>>): kotlin.collections.List<R of com.jsoizo.komprehension.internal.flatMap> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Int> origin=null
+          TYPE_ARG T: kotlin.Int
+          TYPE_ARG R: kotlin.Int
+          ARG source: CALL 'public final fun fromIterable <T> (source: kotlin.collections.Iterable<T of com.jsoizo.komprehension.internal.fromIterable>?): kotlin.collections.List<T of com.jsoizo.komprehension.internal.fromIterable> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Int> origin=null
+            TYPE_ARG T: kotlin.Int
+            ARG source: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+              TYPE_ARG T: kotlin.Int
+              ARG elements: VARARG type=kotlin.Array<out kotlin.Int> varargElementType=kotlin.Int
+                CONST Int type=kotlin.Int value=1
+                CONST Int type=kotlin.Int value=2
+          ARG transform: FUN_EXPR type=kotlin.Function1<kotlin.Int, kotlin.collections.List<kotlin.Int>> origin=LAMBDA
+            FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.collections.List<kotlin.Int>
+              VALUE_PARAMETER kind:Regular name:a index:0 type:kotlin.Int
+              BLOCK_BODY
+                RETURN type=kotlin.Nothing from='local final fun <anonymous> (a: kotlin.Int): kotlin.collections.List<kotlin.Int> declared in <root>.box'
+                  CALL 'public final fun fromIterable <T> (source: kotlin.collections.Iterable<T of com.jsoizo.komprehension.internal.fromIterable>?): kotlin.collections.List<T of com.jsoizo.komprehension.internal.fromIterable> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Int> origin=null
+                    TYPE_ARG T: kotlin.Int
+                    ARG source: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+                      TYPE_ARG T: kotlin.Int
+                      ARG elements: VARARG type=kotlin.Array<out kotlin.Int> varargElementType=kotlin.Int
+                        GET_VAR 'a: kotlin.Int declared in <root>.box.<anonymous>' type=kotlin.Int origin=null
+                        CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=MUL
+                          ARG <this>: GET_VAR 'a: kotlin.Int declared in <root>.box.<anonymous>' type=kotlin.Int origin=null
+                          ARG other: CONST Int type=kotlin.Int value=10
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: GET_VAR 'val concatenated: kotlin.collections.List<kotlin.Int> declared in <root>.box' type=kotlin.collections.List<kotlin.Int> origin=null
+              ARG arg1: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+                TYPE_ARG T: kotlin.Int
+                ARG elements: VARARG type=kotlin.Array<out kotlin.Int> varargElementType=kotlin.Int
+                  CONST Int type=kotlin.Int value=1
+                  CONST Int type=kotlin.Int value=10
+                  CONST Int type=kotlin.Int value=2
+                  CONST Int type=kotlin.Int value=20
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: flatMap order: "
+              GET_VAR 'val concatenated: kotlin.collections.List<kotlin.Int> declared in <root>.box' type=kotlin.collections.List<kotlin.Int> origin=null
+      VAR name:guarded type:kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>> [val]
+        CALL 'public final fun flatMap <T, R> (source: kotlin.collections.List<T of com.jsoizo.komprehension.internal.flatMap>, transform: kotlin.Function1<T of com.jsoizo.komprehension.internal.flatMap, kotlin.collections.List<R of com.jsoizo.komprehension.internal.flatMap>>): kotlin.collections.List<R of com.jsoizo.komprehension.internal.flatMap> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>> origin=null
+          TYPE_ARG T: kotlin.Int
+          TYPE_ARG R: kotlin.Pair<kotlin.Int, kotlin.Int>
+          ARG source: CALL 'public final fun fromIterable <T> (source: kotlin.collections.Iterable<T of com.jsoizo.komprehension.internal.fromIterable>?): kotlin.collections.List<T of com.jsoizo.komprehension.internal.fromIterable> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Int> origin=null
+            TYPE_ARG T: kotlin.Int
+            ARG source: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Int> origin=null
+              TYPE_ARG T: kotlin.Int
+              ARG elements: VARARG type=kotlin.Array<out kotlin.Int> varargElementType=kotlin.Int
+                CONST Int type=kotlin.Int value=1
+                CONST Int type=kotlin.Int value=2
+                CONST Int type=kotlin.Int value=3
+          ARG transform: FUN_EXPR type=kotlin.Function1<kotlin.Int, kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>>> origin=LAMBDA
+            FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>>
+              VALUE_PARAMETER kind:Regular name:a index:0 type:kotlin.Int
+              BLOCK_BODY
+                RETURN type=kotlin.Nothing from='local final fun <anonymous> (a: kotlin.Int): kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>> declared in <root>.box'
+                  CALL 'public final fun flatMap <T, R> (source: kotlin.collections.List<T of com.jsoizo.komprehension.internal.flatMap>, transform: kotlin.Function1<T of com.jsoizo.komprehension.internal.flatMap, kotlin.collections.List<R of com.jsoizo.komprehension.internal.flatMap>>): kotlin.collections.List<R of com.jsoizo.komprehension.internal.flatMap> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>> origin=null
+                    TYPE_ARG T: kotlin.Int
+                    TYPE_ARG R: kotlin.Pair<kotlin.Int, kotlin.Int>
+                    ARG source: CALL 'public final fun fromNullable <T> (source: T of com.jsoizo.komprehension.internal.fromNullable?): kotlin.collections.List<T of com.jsoizo.komprehension.internal.fromNullable> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Int> origin=null
+                      TYPE_ARG T: kotlin.Int
+                      ARG source: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=MUL
+                        ARG <this>: GET_VAR 'a: kotlin.Int declared in <root>.box.<anonymous>' type=kotlin.Int origin=null
+                        ARG other: CONST Int type=kotlin.Int value=10
+                    ARG transform: FUN_EXPR type=kotlin.Function1<kotlin.Int, kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>>> origin=LAMBDA
+                      FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>>
+                        VALUE_PARAMETER kind:Regular name:b index:0 type:kotlin.Int
+                        BLOCK_BODY
+                          RETURN type=kotlin.Nothing from='local final fun <anonymous> (b: kotlin.Int): kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>> declared in <root>.box.<anonymous>'
+                            WHEN type=kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>> origin=IF
+                              BRANCH
+                                if: CALL 'public final fun greaterOrEqual (arg0: kotlin.Int, arg1: kotlin.Int): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=GTEQ
+                                  ARG arg0: GET_VAR 'b: kotlin.Int declared in <root>.box.<anonymous>.<anonymous>' type=kotlin.Int origin=null
+                                  ARG arg1: CONST Int type=kotlin.Int value=20
+                                then: CALL 'public final fun pure <R> (value: R of com.jsoizo.komprehension.internal.pure): kotlin.collections.List<R of com.jsoizo.komprehension.internal.pure> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>> origin=null
+                                  TYPE_ARG R: kotlin.Pair<kotlin.Int, kotlin.Int>
+                                  ARG value: CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.Int, kotlin.Int> origin=null
+                                    TYPE_ARG A: kotlin.Int
+                                    TYPE_ARG B: kotlin.Int
+                                    ARG <this>: GET_VAR 'a: kotlin.Int declared in <root>.box.<anonymous>' type=kotlin.Int origin=null
+                                    ARG that: GET_VAR 'b: kotlin.Int declared in <root>.box.<anonymous>.<anonymous>' type=kotlin.Int origin=null
+                              BRANCH
+                                if: CONST Boolean type=kotlin.Boolean value=true
+                                then: CALL 'public final fun empty <R> (): kotlin.collections.List<R of com.jsoizo.komprehension.internal.empty> declared in com.jsoizo.komprehension.internal' type=kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>> origin=null
+                                  TYPE_ARG R: kotlin.Pair<kotlin.Int, kotlin.Int>
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: GET_VAR 'val guarded: kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>> declared in <root>.box' type=kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>> origin=null
+              ARG arg1: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>> origin=null
+                TYPE_ARG T: kotlin.Pair<kotlin.Int, kotlin.Int>
+                ARG elements: VARARG type=kotlin.Array<out kotlin.Pair<kotlin.Int, kotlin.Int>> varargElementType=kotlin.Pair<kotlin.Int, kotlin.Int>
+                  CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.Int, kotlin.Int> origin=null
+                    TYPE_ARG A: kotlin.Int
+                    TYPE_ARG B: kotlin.Int
+                    ARG <this>: CONST Int type=kotlin.Int value=2
+                    ARG that: CONST Int type=kotlin.Int value=20
+                  CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.Int, kotlin.Int> origin=null
+                    TYPE_ARG A: kotlin.Int
+                    TYPE_ARG B: kotlin.Int
+                    ARG <this>: CONST Int type=kotlin.Int value=3
+                    ARG that: CONST Int type=kotlin.Int value=30
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: guarded: "
+              GET_VAR 'val guarded: kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>> declared in <root>.box' type=kotlin.collections.List<kotlin.Pair<kotlin.Int, kotlin.Int>> origin=null
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+        CONST String type=kotlin.String value="OK"

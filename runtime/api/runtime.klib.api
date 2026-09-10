@@ -1,0 +1,39 @@
+// Klib ABI Dump
+// Targets: [androidNativeArm32, androidNativeArm64, androidNativeX64, androidNativeX86, iosArm64, iosSimulatorArm64, iosX64, js, linuxArm64, linuxX64, macosArm64, mingwX64, tvosArm64, tvosSimulatorArm64, wasmJs, wasmWasi, watchosArm32, watchosArm64, watchosDeviceArm64, watchosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.jsoizo.komprehension:runtime>
+open annotation class com.jsoizo.komprehension.internal/KomprehensionInternalApi : kotlin/Annotation { // com.jsoizo.komprehension.internal/KomprehensionInternalApi|null[0]
+    constructor <init>() // com.jsoizo.komprehension.internal/KomprehensionInternalApi.<init>|<init>(){}[0]
+}
+
+open annotation class com.jsoizo.komprehension/ComprehensionDsl : kotlin/Annotation { // com.jsoizo.komprehension/ComprehensionDsl|null[0]
+    constructor <init>() // com.jsoizo.komprehension/ComprehensionDsl.<init>|<init>(){}[0]
+}
+
+final class com.jsoizo.komprehension/ComprehensionScope { // com.jsoizo.komprehension/ComprehensionScope|null[0]
+    final fun <#A1: kotlin/Any> (#A1?).bind(): #A1 // com.jsoizo.komprehension/ComprehensionScope.bind|bind@0:0?(){0§<kotlin.Any>}[0]
+    final fun <#A1: kotlin/Any> from(#A1?): #A1 // com.jsoizo.komprehension/ComprehensionScope.from|from(0:0?){0§<kotlin.Any>}[0]
+    final fun <#A1: kotlin/Any?, #B1: kotlin/Any?> (kotlin.collections/Map<#A1, #B1>?).bind(): kotlin/Pair<#A1, #B1> // com.jsoizo.komprehension/ComprehensionScope.bind|bind@kotlin.collections.Map<0:0,0:1>?(){0§<kotlin.Any?>;1§<kotlin.Any?>}[0]
+    final fun <#A1: kotlin/Any?, #B1: kotlin/Any?> from(kotlin.collections/Map<#A1, #B1>?): kotlin/Pair<#A1, #B1> // com.jsoizo.komprehension/ComprehensionScope.from|from(kotlin.collections.Map<0:0,0:1>?){0§<kotlin.Any?>;1§<kotlin.Any?>}[0]
+    final fun <#A1: kotlin/Any?> (kotlin.collections/Iterable<#A1>?).bind(): #A1 // com.jsoizo.komprehension/ComprehensionScope.bind|bind@kotlin.collections.Iterable<0:0>?(){0§<kotlin.Any?>}[0]
+    final fun <#A1: kotlin/Any?> (kotlin.sequences/Sequence<#A1>?).bind(): #A1 // com.jsoizo.komprehension/ComprehensionScope.bind|bind@kotlin.sequences.Sequence<0:0>?(){0§<kotlin.Any?>}[0]
+    final fun <#A1: kotlin/Any?> (kotlin/Array<out #A1>?).bind(): #A1 // com.jsoizo.komprehension/ComprehensionScope.bind|bind@kotlin.Array<out|0:0>?(){0§<kotlin.Any?>}[0]
+    final fun <#A1: kotlin/Any?> from(kotlin.collections/Iterable<#A1>?): #A1 // com.jsoizo.komprehension/ComprehensionScope.from|from(kotlin.collections.Iterable<0:0>?){0§<kotlin.Any?>}[0]
+    final fun <#A1: kotlin/Any?> from(kotlin.sequences/Sequence<#A1>?): #A1 // com.jsoizo.komprehension/ComprehensionScope.from|from(kotlin.sequences.Sequence<0:0>?){0§<kotlin.Any?>}[0]
+    final fun <#A1: kotlin/Any?> from(kotlin/Array<out #A1>?): #A1 // com.jsoizo.komprehension/ComprehensionScope.from|from(kotlin.Array<out|0:0>?){0§<kotlin.Any?>}[0]
+    final fun where(kotlin/Boolean) // com.jsoizo.komprehension/ComprehensionScope.where|where(kotlin.Boolean){}[0]
+}
+
+final fun <#A: kotlin/Any> com.jsoizo.komprehension.internal/fromNullable(#A?): kotlin.collections/List<#A> // com.jsoizo.komprehension.internal/fromNullable|fromNullable(0:0?){0§<kotlin.Any>}[0]
+final fun <#A: kotlin/Any?, #B: kotlin/Any?> com.jsoizo.komprehension.internal/flatMap(kotlin.collections/List<#A>, kotlin/Function1<#A, kotlin.collections/List<#B>>): kotlin.collections/List<#B> // com.jsoizo.komprehension.internal/flatMap|flatMap(kotlin.collections.List<0:0>;kotlin.Function1<0:0,kotlin.collections.List<0:1>>){0§<kotlin.Any?>;1§<kotlin.Any?>}[0]
+final fun <#A: kotlin/Any?, #B: kotlin/Any?> com.jsoizo.komprehension.internal/fromMap(kotlin.collections/Map<#A, #B>?): kotlin.collections/List<kotlin/Pair<#A, #B>> // com.jsoizo.komprehension.internal/fromMap|fromMap(kotlin.collections.Map<0:0,0:1>?){0§<kotlin.Any?>;1§<kotlin.Any?>}[0]
+final fun <#A: kotlin/Any?> com.jsoizo.komprehension.internal/empty(): kotlin.collections/List<#A> // com.jsoizo.komprehension.internal/empty|empty(){0§<kotlin.Any?>}[0]
+final fun <#A: kotlin/Any?> com.jsoizo.komprehension.internal/fromArray(kotlin/Array<out #A>?): kotlin.collections/List<#A> // com.jsoizo.komprehension.internal/fromArray|fromArray(kotlin.Array<out|0:0>?){0§<kotlin.Any?>}[0]
+final fun <#A: kotlin/Any?> com.jsoizo.komprehension.internal/fromIterable(kotlin.collections/Iterable<#A>?): kotlin.collections/List<#A> // com.jsoizo.komprehension.internal/fromIterable|fromIterable(kotlin.collections.Iterable<0:0>?){0§<kotlin.Any?>}[0]
+final fun <#A: kotlin/Any?> com.jsoizo.komprehension.internal/fromSequence(kotlin.sequences/Sequence<#A>?): kotlin.collections/List<#A> // com.jsoizo.komprehension.internal/fromSequence|fromSequence(kotlin.sequences.Sequence<0:0>?){0§<kotlin.Any?>}[0]
+final fun <#A: kotlin/Any?> com.jsoizo.komprehension.internal/pure(#A): kotlin.collections/List<#A> // com.jsoizo.komprehension.internal/pure|pure(0:0){0§<kotlin.Any?>}[0]
+final fun <#A: kotlin/Any?> com.jsoizo.komprehension/comprehend(kotlin/Function1<com.jsoizo.komprehension/ComprehensionScope, #A>): kotlin.collections/List<#A> // com.jsoizo.komprehension/comprehend|comprehend(kotlin.Function1<com.jsoizo.komprehension.ComprehensionScope,0:0>){0§<kotlin.Any?>}[0]

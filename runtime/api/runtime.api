@@ -1,0 +1,35 @@
+public abstract interface annotation class com/jsoizo/komprehension/ComprehensionDsl : java/lang/annotation/Annotation {
+}
+
+public final class com/jsoizo/komprehension/ComprehensionKt {
+	public static final fun comprehend (Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+}
+
+public final class com/jsoizo/komprehension/ComprehensionScope {
+	public final fun bind (Ljava/lang/Iterable;)Ljava/lang/Object;
+	public final fun bind (Ljava/lang/Object;)Ljava/lang/Object;
+	public final fun bind (Ljava/util/Map;)Lkotlin/Pair;
+	public final fun bind (Lkotlin/sequences/Sequence;)Ljava/lang/Object;
+	public final fun bind ([Ljava/lang/Object;)Ljava/lang/Object;
+	public final fun from (Ljava/lang/Iterable;)Ljava/lang/Object;
+	public final fun from (Ljava/lang/Object;)Ljava/lang/Object;
+	public final fun from (Ljava/util/Map;)Lkotlin/Pair;
+	public final fun from (Lkotlin/sequences/Sequence;)Ljava/lang/Object;
+	public final fun from ([Ljava/lang/Object;)Ljava/lang/Object;
+	public final fun where (Z)V
+}
+
+public abstract interface annotation class com/jsoizo/komprehension/internal/KomprehensionInternalApi : java/lang/annotation/Annotation {
+}
+
+public final class com/jsoizo/komprehension/internal/RuntimeKt {
+	public static final fun empty ()Ljava/util/List;
+	public static final fun flatMap (Ljava/util/List;Lkotlin/jvm/functions/Function1;)Ljava/util/List;
+	public static final fun fromArray ([Ljava/lang/Object;)Ljava/util/List;
+	public static final fun fromIterable (Ljava/lang/Iterable;)Ljava/util/List;
+	public static final fun fromMap (Ljava/util/Map;)Ljava/util/List;
+	public static final fun fromNullable (Ljava/lang/Object;)Ljava/util/List;
+	public static final fun fromSequence (Lkotlin/sequences/Sequence;)Ljava/util/List;
+	public static final fun pure (Ljava/lang/Object;)Ljava/util/List;
+}
+
