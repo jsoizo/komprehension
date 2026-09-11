@@ -26,5 +26,26 @@ internal object KomprehensionNames {
     val PURE: CallableId = internal("pure")
     val EMPTY: CallableId = internal("empty")
 
+    /**
+     * Containers that resolve to `from(T?)` and would silently bind the whole container as one element.
+     * Listed explicitly rather than detected structurally: `String` is also a container by some
+     * definitions, yet binding the whole string is the behaviour people expect.
+     */
+    val UNSUPPORTED_GENERATOR_SOURCES: Set<ClassId> = buildSet {
+        for (name in listOf("Int", "Long", "Short", "Byte", "Double", "Float", "Char", "Boolean")) {
+            add(kotlin("${name}Array"))
+        }
+        add(kotlin("Result"))
+        addAll(listOf("Iterator", "ListIterator").map { collections(it) })
+        addAll(listOf("Stream", "IntStream", "LongStream", "DoubleStream").map { javaStream(it) })
+        addAll(listOf("Optional", "OptionalInt", "OptionalLong", "OptionalDouble").map { javaUtil(it) })
+        add(javaUtil("Enumeration"))
+    }
+
     private fun internal(name: String): CallableId = CallableId(INTERNAL_PACKAGE, Name.identifier(name))
+
+    private fun kotlin(name: String) = ClassId(FqName("kotlin"), Name.identifier(name))
+    private fun collections(name: String) = ClassId(FqName("kotlin.collections"), Name.identifier(name))
+    private fun javaUtil(name: String) = ClassId(FqName("java.util"), Name.identifier(name))
+    private fun javaStream(name: String) = ClassId(FqName("java.util.stream"), Name.identifier(name))
 }

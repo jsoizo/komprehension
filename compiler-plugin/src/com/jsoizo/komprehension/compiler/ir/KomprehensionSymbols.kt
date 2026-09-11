@@ -26,6 +26,7 @@ internal class KomprehensionSymbols private constructor(
     val flatMap: IrSimpleFunctionSymbol,
     val pure: IrSimpleFunctionSymbol,
     val empty: IrSimpleFunctionSymbol,
+    val fromNullable: IrSimpleFunctionSymbol,
     val fromOverloads: Set<IrSimpleFunctionSymbol>,
     val bindOverloads: Set<IrSimpleFunctionSymbol>,
     val whereOverloads: Set<IrSimpleFunctionSymbol>,
@@ -59,6 +60,7 @@ internal class KomprehensionSymbols private constructor(
                 KomprehensionNames.FROM_NULLABLE,
             )
             val helperBySourceClass = HashMap<IrClassSymbol?, IrSimpleFunctionSymbol>()
+            var fromNullable: IrSimpleFunctionSymbol? = null
             for (id in helperIds) {
                 val helper = one(id) ?: return SymbolResolution.Missing("internal.${id.callableName}")
                 val sourceType = helper.sourceParameterType()
@@ -66,6 +68,7 @@ internal class KomprehensionSymbols private constructor(
                 // classOrNull is null when the parameter is a type parameter. That is not a failure:
                 // it is the key fromNullable is meant to occupy, and it is what makes from(T?) find it.
                 val key = sourceType.classOrNull
+                if (key == null) fromNullable = helper
                 val clash = helperBySourceClass.put(key, helper)
                 if (clash != null) {
                     return SymbolResolution.Missing(
@@ -81,8 +84,13 @@ internal class KomprehensionSymbols private constructor(
             val where = scopeMembers(KomprehensionNames.WHERE)
             if (where.isEmpty()) return SymbolResolution.Missing("ComprehensionScope.where")
 
+            val nullableHelper = fromNullable
+                ?: return SymbolResolution.Missing("internal.fromNullable by its source type")
+
             return SymbolResolution.Resolved(
-                KomprehensionSymbols(comprehend, flatMap, pure, empty, from, bind, where, helperBySourceClass),
+                KomprehensionSymbols(
+                    comprehend, flatMap, pure, empty, nullableHelper, from, bind, where, helperBySourceClass,
+                ),
             )
         }
 

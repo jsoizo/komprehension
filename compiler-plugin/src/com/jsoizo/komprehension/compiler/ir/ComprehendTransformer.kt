@@ -2,11 +2,13 @@
 
 package com.jsoizo.komprehension.compiler.ir
 
+import com.jsoizo.komprehension.compiler.KomprehensionNames
 import com.jsoizo.komprehension.compiler.diagnostics.KomprehensionErrors
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.backend.common.lower.DeclarationIrBuilder
 import org.jetbrains.kotlin.descriptors.DescriptorVisibilities
 import org.jetbrains.kotlin.descriptors.Modality
+import org.jetbrains.kotlin.diagnostics.KtDiagnosticFactory0
 import org.jetbrains.kotlin.ir.IrDiagnosticReporter
 import org.jetbrains.kotlin.ir.IrElement
 import org.jetbrains.kotlin.ir.IrStatement
@@ -26,6 +28,7 @@ import org.jetbrains.kotlin.ir.expressions.IrBlockBody
 import org.jetbrains.kotlin.ir.expressions.IrCall
 import org.jetbrains.kotlin.ir.expressions.IrExpression
 import org.jetbrains.kotlin.ir.expressions.IrFunctionExpression
+import org.jetbrains.kotlin.ir.expressions.IrFunctionReference
 import org.jetbrains.kotlin.ir.expressions.IrGetValue
 import org.jetbrains.kotlin.ir.expressions.IrReturn
 import org.jetbrains.kotlin.ir.expressions.IrStatementOrigin
@@ -42,9 +45,11 @@ import org.jetbrains.kotlin.ir.expressions.impl.IrWhenImpl
 import org.jetbrains.kotlin.ir.symbols.IrValueSymbol
 import org.jetbrains.kotlin.ir.symbols.UnsafeDuringIrConstructionAPI
 import org.jetbrains.kotlin.ir.types.IrType
+import org.jetbrains.kotlin.ir.types.classOrNull
 import org.jetbrains.kotlin.ir.types.isUnit
 import org.jetbrains.kotlin.ir.types.typeWith
 import org.jetbrains.kotlin.ir.util.SYNTHETIC_OFFSET
+import org.jetbrains.kotlin.ir.util.classId
 import org.jetbrains.kotlin.ir.util.patchDeclarationParents
 import org.jetbrains.kotlin.ir.util.substitute
 import org.jetbrains.kotlin.ir.visitors.IrElementTransformerVoid
@@ -71,6 +76,14 @@ internal class ComprehendTransformer(
         val originalLambda: IrSimpleFunction,
     )
 
+    override fun visitFunctionReference(expression: IrFunctionReference): IrExpression {
+        expression.transformChildrenVoid(this)
+        if (expression.symbol == symbols.comprehend) {
+            report(expression, KomprehensionErrors.COMPREHEND_MUST_BE_CALLED_DIRECTLY)
+        }
+        return expression
+    }
+
     override fun visitCall(expression: IrCall): IrExpression {
         // Children first, so a nested comprehend is already folded when this one moves statements
         // into new lambdas. transformChildrenVoid here means super.visitCall must NOT be called:
@@ -79,11 +92,12 @@ internal class ComprehendTransformer(
 
         if (expression.symbol != symbols.comprehend) return expression
 
-        val lambda = (expression.arguments.lastOrNull() as? IrFunctionExpression)?.function
-        if (lambda == null) {
-            report(expression, "the block argument is not a lambda written at the call site")
+        val block = expression.arguments.lastOrNull() as? IrFunctionExpression
+        if (block == null || block.origin != IrStatementOrigin.LAMBDA) {
+            report(expression, KomprehensionErrors.COMPREHEND_BLOCK_MUST_BE_LAMBDA)
             return expression
         }
+        val lambda = block.function
         val body = lambda.body
         if (body !is IrBlockBody) {
             report(expression, "the block has no block body")
@@ -331,6 +345,7 @@ internal class ComprehendTransformer(
                 // A generator in result position is consumed, so scan its source rather than itself.
                 val terminalCall = generatorCallOrNull(terminator)
                 val scanned = if (terminalCall != null) {
+                    if (!reportIfUnsupportedSource(Generator(null, terminalCall))) clean = false
                     sourceParamOf(Generator(null, terminalCall))?.let { terminalCall.arguments[it] }
                 } else {
                     terminator
@@ -350,6 +365,7 @@ internal class ComprehendTransformer(
             }
             val generator = generatorOrNull(stmt)
             if (generator != null) {
+                if (!reportIfUnsupportedSource(generator)) clean = false
                 val source = sourceParamOf(generator)?.let { generator.call.arguments[it] }
                 if (source == null) {
                     report(generator.call, "the generator has no resolvable source argument")
@@ -379,7 +395,7 @@ internal class ComprehendTransformer(
 
             override fun visitGetValue(expression: IrGetValue) {
                 if (expression.symbol == scopeSymbol) {
-                    report(expression, "the 'comprehend' scope cannot be used as a value")
+                    report(expression, KomprehensionErrors.COMPREHENSION_SCOPE_ESCAPES)
                     clean = false
                 }
             }
@@ -389,10 +405,12 @@ internal class ComprehendTransformer(
                 // Matching on the callee alone would also flag the generators of an inner comprehend that
                 // failed validation and stayed in the tree, reporting valid code as misplaced.
                 if (isDslCall && dispatchedOn(expression, scopeSymbol)) {
-                    report(
-                        expression,
-                        "'from', 'bind' and 'where' are only allowed as top-level statements of the block",
-                    )
+                    val factory = if (expression.symbol in symbols.whereOverloads) {
+                        KomprehensionErrors.WHERE_IN_UNSUPPORTED_POSITION
+                    } else {
+                        KomprehensionErrors.GENERATOR_IN_UNSUPPORTED_POSITION
+                    }
+                    report(expression, factory)
                     clean = false
                     // The receiver belongs to the call just rejected; visiting it would add a second,
                     // untrue error saying the scope escaped as a value.
@@ -405,7 +423,7 @@ internal class ComprehendTransformer(
             override fun visitReturn(expression: IrReturn) {
                 // A `return@comprehend` nested in an if/when is only reachable here.
                 if (expression.returnTargetSymbol == c.originalLambda.symbol) {
-                    report(expression, "'return' out of a 'comprehend' block is not supported")
+                    report(expression, KomprehensionErrors.RETURN_NOT_ALLOWED_IN_COMPREHENSION)
                     clean = false
                 }
                 expression.acceptChildrenVoid(this)
@@ -490,8 +508,27 @@ internal class ComprehendTransformer(
         ),
     )
 
+    private fun report(at: IrElement, factory: KtDiagnosticFactory0) {
+        reporter.at(at, irFile).report(factory)
+    }
+
+    /** For shapes Fir2Ir is not expected to produce. Users should never see these. */
     private fun report(at: IrElement, reason: String) {
         reporter.at(at, irFile).report(KomprehensionErrors.ILLEGAL_COMPREHENSION_SHAPE, reason)
+    }
+
+    /**
+     * A container that resolves to `from(T?)` binds the container itself as a single element. The result
+     * type is still what the user asked for, so nothing downstream complains.
+     */
+    private fun reportIfUnsupportedSource(generator: Generator): Boolean {
+        val sourceParam = sourceParamOf(generator) ?: return true
+        if (symbols.helperFor(sourceParam.type) != symbols.fromNullable) return true
+        val classId = generator.call.typeArguments.firstOrNull()?.classOrNull?.owner?.classId ?: return true
+        if (classId !in KomprehensionNames.UNSUPPORTED_GENERATOR_SOURCES) return true
+        reporter.at(generator.call, irFile)
+            .report(KomprehensionErrors.UNSUPPORTED_GENERATOR_SOURCE, classId.shortClassName.asString())
+        return false
     }
 
 }
