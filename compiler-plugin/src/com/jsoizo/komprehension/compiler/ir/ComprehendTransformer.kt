@@ -311,8 +311,14 @@ internal class ComprehendTransformer(
      * is exactly what `println(from(xs))` and `where(from(xs) > 0)` produce.
      */
     private fun validateShape(lambda: IrSimpleFunction, stmts: List<IrStatement>, c: Ctx): Boolean {
-        val scopeSymbol: IrValueSymbol? =
+        // Without it the receiver check below can never match, and every misplaced generator would pass
+        // unreported. Bail rather than rewrite a block whose calls cannot be attributed to this scope.
+        val scopeSymbol: IrValueSymbol =
             lambda.parameters.firstOrNull { it.kind == IrParameterKind.ExtensionReceiver }?.symbol
+            ?: run {
+                report(lambda, "the block has no 'ComprehensionScope' receiver")
+                return false
+            }
         var clean = true
         var sawTerminator = false
 
@@ -364,7 +370,7 @@ internal class ComprehendTransformer(
         return clean
     }
 
-    private fun scanUserCode(subtree: IrElement, scopeSymbol: IrValueSymbol?, c: Ctx): Boolean {
+    private fun scanUserCode(subtree: IrElement, scopeSymbol: IrValueSymbol, c: Ctx): Boolean {
         var clean = true
         subtree.acceptVoid(object : IrVisitorVoid() {
             override fun visitElement(element: IrElement) {
@@ -372,7 +378,7 @@ internal class ComprehendTransformer(
             }
 
             override fun visitGetValue(expression: IrGetValue) {
-                if (scopeSymbol != null && expression.symbol == scopeSymbol) {
+                if (expression.symbol == scopeSymbol) {
                     report(expression, "the 'comprehend' scope cannot be used as a value")
                     clean = false
                 }
@@ -408,8 +414,7 @@ internal class ComprehendTransformer(
         return clean
     }
 
-    private fun dispatchedOn(call: IrCall, scopeSymbol: IrValueSymbol?): Boolean {
-        if (scopeSymbol == null) return false
+    private fun dispatchedOn(call: IrCall, scopeSymbol: IrValueSymbol): Boolean {
         val callee = call.symbol.owner
         val index = callee.parameters.indexOfFirst { it.kind == IrParameterKind.DispatchReceiver }
         if (index < 0) return false
