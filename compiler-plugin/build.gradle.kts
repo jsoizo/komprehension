@@ -43,11 +43,14 @@ val testArtifacts: Configuration = configurations.create("testArtifact")
 val komprehensionRuntimeClasspath = configurations.dependencyScope("komprehensionRuntimeClasspath") {
     isTransitive = false
 }
+// Resolved with get(): only some Gradle versions offer an extendsFrom overload taking the provider, and
+// IDEs that resolve the script against a different distribution then fail to compile it.
+val komprehensionRuntimeScope = komprehensionRuntimeClasspath.get()
 val komprehensionJvmRuntimeClasspath = configurations.resolvable("komprehensionJvmRuntimeClasspath") {
-    extendsFrom(komprehensionRuntimeClasspath)
+    extendsFrom(komprehensionRuntimeScope)
 }
 val komprehensionJsRuntimeClasspath = configurations.resolvable("komprehensionJsRuntimeClasspath") {
-    extendsFrom(komprehensionRuntimeClasspath)
+    extendsFrom(komprehensionRuntimeScope)
     attributes {
         attribute(Usage.USAGE_ATTRIBUTE, objects.named(KotlinUsages.KOTLIN_RUNTIME))
         attribute(KotlinPlatformType.attribute, KotlinPlatformType.js)
