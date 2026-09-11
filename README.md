@@ -29,21 +29,64 @@ hand-written chain but reads as a flat sequence of bindings.
 - `where(condition)` drops the current branch.
 - The last expression of the block is the result, and `comprehend` always returns `List<R>`.
 
+Scala's `for` lets the first generator decide the result type; this one does not. That is what lets a
+`Map`, a nullable and an `Iterable` sit in the same block: if the first generator decided, a block
+starting from a nullable would have to produce `R?`, and there would be no answer for what an inner
+`List` generator returning two elements should mean. Always `List<R>` keeps the mixing well defined.
+
 The DSL is declared as ordinary Kotlin, so type inference and code completion work without any IDE plugin.
 
-A block the rewrite cannot express is a compile error rather than a surprise at runtime. Writing
-`val a = from(xs) + 1` reports *a generator may only appear as the initializer of a local `val` or as a
-standalone statement* at that position, and six more shapes are diagnosed the same way.
+### What you cannot write inside the block
 
-## Trying it
+The rewrite moves the statements after a generator into a new lambda, so anything that would not
+survive that move is a compile error rather than a surprise at run time. Three rules cover it.
 
-The [`sample`](sample) directory is a separate build that applies the plugin the way a consumer would.
+1. A generator is the right-hand side of a `val`, or a statement on its own. `val a = from(xs) + 1`
+   and `where(a.bind() > 3)` do not qualify — split them into two lines. This is the same restriction
+   Scala puts on `<-`, and for the same reason: the rest of the block has to be separable.
+2. The block's `this` cannot be used as a value. It disappears in the rewrite, so anything holding on
+   to it would point at nothing.
+3. No early `return`. There is nothing to return from once the lambda is gone, so a
+   `return@comprehend` that is not the last statement — inside an `if`, say — is rejected. Written as
+   the last statement it is accepted, because that is the result expression spelled out.
+
+Sources that would otherwise bind as a single element are rejected too, so `from(intArrayOf(1, 2))`
+tells you to convert first rather than quietly binding the whole array.
+
+## Using it
+
+Not published to the Gradle Plugin Portal or Maven Central yet, so there is no version to depend on.
+To use it today, point your build at a local checkout:
+
+```kotlin
+// settings.gradle.kts
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    includeBuild("../komprehension")
+}
+
+// Again outside pluginManagement, so the compiler plugin and runtime coordinates resolve too.
+includeBuild("../komprehension")
+```
+
+```kotlin
+// build.gradle.kts
+plugins {
+    kotlin("jvm") version "2.4.20"
+    id("com.jsoizo.komprehension")
+}
+```
+
+That is the whole setup — no dependency on the runtime, because the Gradle plugin adds it.
+
+[`sample`](sample) is exactly this, wired to the checkout it sits in:
 
 ```console
 cd sample && ../gradlew run
 ```
-
-Its `build.gradle.kts` declares no dependency on the runtime — the Gradle plugin adds it.
 
 ## Modules
 
