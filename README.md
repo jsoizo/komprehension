@@ -4,7 +4,7 @@ A Kotlin compiler plugin that brings Scala-style for-comprehensions to Kotlin.
 
 > **Status: the MVP works.** The rewrite and its seven diagnostics run on JVM and JS, and the
 > [`sample`](sample) build exercises the whole thing through the Gradle plugin. Not published to a
-> repository yet. See [`docs/design.md`](docs/design.md) for the design record (written in Japanese).
+> repository yet.
 
 ## What it looks like
 
